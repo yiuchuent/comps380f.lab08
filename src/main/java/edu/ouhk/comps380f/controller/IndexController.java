@@ -12,4 +12,9 @@ public class IndexController {
     public View index() {
         return new RedirectView("/ticket/list", true);
     }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
 }

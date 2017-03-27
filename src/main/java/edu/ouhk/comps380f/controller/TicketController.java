@@ -4,6 +4,7 @@ import edu.ouhk.comps380f.model.Attachment;
 import edu.ouhk.comps380f.model.Ticket;
 import edu.ouhk.comps380f.view.DownloadingView;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,8 +44,10 @@ public class TicketController {
     }
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
-    public ModelAndView create() {
-        return new ModelAndView("add", "ticketForm", new Form());
+    public ModelAndView create(Principal principal) {
+        Form form = new Form();
+        form.setCustomerName(principal.getName());
+        return new ModelAndView("add", "ticketForm", form);
     }
 
     public static class Form {
